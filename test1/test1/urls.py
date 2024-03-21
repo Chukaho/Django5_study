@@ -19,6 +19,8 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import RedirectView
 
+import helloworld.views
+
 '''
 include函数：用于在主URL配置文件中包含应用程序的 URL 配置文件。
 这样的组织结构使得项目的URL配置更加模块化和可维护，有助于更清晰地组织和管理不同应用程序的 URL 结构。
@@ -32,4 +34,5 @@ urlpatterns = [
     # 空间命名法只提供了前缀，后面还要索引到具体的app里面的urls文件路径，仅输入空间标签无法访问
     path('order/', include(("order.urls"), namespace='order')),
     path('user/', include(("user.urls"), namespace='user')),
+
 ]

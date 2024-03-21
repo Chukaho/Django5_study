@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload File Test</title>
+</head>
+<body>
+<form action="upload" method="post" enctype="multipart/form-data">
+    <!--    当你想要从表单上传文件时，需要将'enctype'属性设置为"multipart/form-data"，以确保文件能够正确地被上传到服务器。-->
+    {% csrf_token %}
+    <input type="file" name="file">
+    <br>
+    <br>
+    <input type="submit" value="UPLOAD">
+</form>
+</body>
+</html>

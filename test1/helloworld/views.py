@@ -1,3 +1,5 @@
+import os.path
+
 from django.http import HttpResponse, StreamingHttpResponse, FileResponse
 from django.shortcuts import redirect, render
 
@@ -41,7 +43,7 @@ def index1(request):
         'data': my_data,
         'message': 'Welcome to our website!!'
     }
-    return render(resquest, 'helloworld/index.html', context=context)
+    return render(request, 'helloworld/index.html', context=context)
 
 
 '''
@@ -129,3 +131,48 @@ def post_test(request):  # get请求测算
     print(request.POST.get("password"))
     print(request.POST.get("aaa", 222))  # 页面没有的参数，默认输入None，第二个参数可以指定默认的参数
     return HttpResponse("http post ok")
+
+
+def to_login(request):
+    return render(request, "login.html")
+
+
+'''
+Django-P25 会话管理
+'''
+
+
+def login(request):
+    user_name = request.POST.get("user_name")
+    password = request.POST.get("password")
+    if user_name == "111" and password == "111":
+        request.session["CurrentUserName"] = user_name  # 在session中存储用户名，type为字典
+        print("session is", request.session["CurrentUserName"])
+        response = render(request, "main.html")
+        response.set_cookie("rememeber_me", True)  # 设置cookie
+        return response
+
+    else:
+        context_value = {"error_info": "user_name or password not match"}  # 提示错误信息，type为字典
+        return render(request, "login.html", context=context_value)  # 返回错误信息
+
+
+'''
+Django-P26 上传文件
+'''
+
+
+def to_upload(request):
+    return render(request, "upload.html")
+
+
+def upload(request):
+    file = request.FILES.get("file")  # 获取上传文件
+    if file:
+        f = open(os.path.join("D:\\Downloads", file.name), 'wb+')  # 打开特定的文件进行二进制操作
+        for chunk in file.chunks():  # .chunks流式分块写入，适用各种文件
+            f.write(chunk)
+        f.close()
+        return HttpResponse("FILE Upload successful")
+    else:
+        return HttpResponse("NO FILE")

@@ -13,4 +13,8 @@ urlpatterns = [
     path("file_download/", views.file_download, name="file_download"),
     path("get/", views.get_test, name="get_test"),
     path("post", views.post_test, name="post_test"),
+    path('tologin', views.to_login, name="to_login"),
+    path('login', views.login, name="login"),
+    path('toupload', views.to_upload, name="to_upload"),
+    path('upload', views.upload, name="upload"),
 ]
