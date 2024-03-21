@@ -1,0 +1,11 @@
+{% extends "tasks/layout.html" %}
+
+{% block body %}
+    <h1>Add Task</h1>
+    <form action="{% url 'tasks:add' %}" method="post">
+        {% csrf_token %}  <!--为保网络安全需要添加Django的CSRF验证令牌才能提交表单-->
+        {{ form }}  <!--不用在html创建表单，直接引用Django的表单类-->
+        <input type="submit">
+    </form>
+    <a href="{% url 'tasks:index' %}">View Task</a>
+{% endblock %}
