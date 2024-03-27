@@ -29,10 +29,9 @@ include函数：用于在主URL配置文件中包含应用程序的 URL 配置�
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('index/', admin.site.urls),
-    path('redirectTo/', RedirectView.as_view(url="index/")),  # 重新定向跳转到index页面
-    path('helloworld/', include(("helloworld.urls"), namespace='helloworld')),
+    path('helloworld/', include(('helloworld.urls'), namespace='helloworld')),
     # 空间命名法只提供了前缀，后面还要索引到具体的app里面的urls文件路径，仅输入空间标签无法访问
-    path('order/', include(("order.urls"), namespace='order')),
-    path('user/', include(("user.urls"), namespace='user')),
+    path('order/', include(('order.urls'), namespace='order')),
+    path('user/', include(('user.urls'), namespace='user')),
 
 ]

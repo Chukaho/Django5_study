@@ -74,7 +74,7 @@ WSGI_APPLICATION = 'test1.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
+DATABASES = {  # 数据库信息
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
@@ -116,7 +116,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 # 设置静态资源文件集合, 复杂项目可能存在多个static文件，需要单独配置路径让它可以被访问到
-STATICFILES_DIRS = [BASE_DIR / "static", BASE_DIR / "helloWorld/images", BASE_DIR / "common"]  # 后面一个参数传入分别为APP名/文件名
+STATICFILES_DIRS = [BASE_DIR / "helloworld/static", BASE_DIR / "helloworld/common"]  # 后面一个参数传入分别为APP名/文件名
 # 可以自己添加一些文件夹进行访问
 
 

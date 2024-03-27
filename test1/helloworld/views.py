@@ -2,6 +2,9 @@ import os.path
 
 from django.http import HttpResponse, StreamingHttpResponse, FileResponse
 from django.shortcuts import redirect, render
+from django.views.generic import ListView
+
+from helloworld.models import StudentInfo
 
 
 # Create your views here.
@@ -176,3 +179,9 @@ def upload(request):
         return HttpResponse("FILE Upload successful")
     else:
         return HttpResponse("NO FILE")
+
+
+class list(ListView):
+    template_name = 'student/list.html'
+    extra_context = {'title': 'student info list'}
+    queryset = StudentInfo.objects.all()

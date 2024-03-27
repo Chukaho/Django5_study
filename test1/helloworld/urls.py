@@ -17,4 +17,5 @@ urlpatterns = [
     path('login', views.login, name="login"),
     path('toupload', views.to_upload, name="to_upload"),
     path('upload', views.upload, name="upload"),
+    path('student/list', views.ListView.as_view(), name="student_list"),
 ]
